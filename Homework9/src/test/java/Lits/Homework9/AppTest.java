@@ -64,7 +64,7 @@ public class AppTest {
 		webDriver.findElement(By.xpath("//INPUT[@id='identifierId']")).sendKeys("odkolya@gmail.com");
 		webDriver.findElement(By.xpath("//SPAN[@class='RveJvd snByac']")).click();
 		Thread.sleep(2000);
-		webDriver.findElement(By.name("password")).sendKeys("solomia5");
+		webDriver.findElement(By.name("password")).sendKeys("selenium12");
 		Thread.sleep(2000);
 		webDriver.findElement(By.xpath("//*[@id=\"passwordNext\"]/content/span")).click();
 		Thread.sleep(2000);
