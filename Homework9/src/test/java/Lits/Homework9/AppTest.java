@@ -61,10 +61,10 @@ public class AppTest {
 
 		webDriver.findElement(By.xpath("//A[@class='gb_P'][text()='Gmail']")).click();
 		webDriver.findElement(By.xpath("//A[@class='gmail-nav__nav-link gmail-nav__nav-link__sign-in']")).click();
-		webDriver.findElement(By.xpath("//INPUT[@id='identifierId']")).sendKeys("odkolya@gmail.com");
+		webDriver.findElement(By.xpath("//INPUT[@id='identifierId']")).sendKeys("testolx12585@gmail.com");
 		webDriver.findElement(By.xpath("//SPAN[@class='RveJvd snByac']")).click();
 		Thread.sleep(2000);
-		webDriver.findElement(By.name("password")).sendKeys("selenium12");
+		webDriver.findElement(By.name("password")).sendKeys("123qaz123");
 		Thread.sleep(2000);
 		webDriver.findElement(By.xpath("//*[@id=\"passwordNext\"]/content/span")).click();
 		Thread.sleep(2000);
