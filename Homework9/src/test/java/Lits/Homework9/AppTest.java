@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -31,9 +34,9 @@ public class AppTest {
 	private final String CHROME_NAME = "chrome";
 	private final String FIREFOX_NAME = "firefox";
 
-	@BeforeMethod
+	@BeforeSuite
 	@Parameters("browserName")
-	public void setupBrowser(String browserName) {
+	public void setupBrowser(String browserName) throws InterruptedException {
 
 		if (browserName.equals(CHROME_NAME)) {
 			WebDriverManager.chromedriver().setup();
@@ -52,10 +55,6 @@ public class AppTest {
 		webDriver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
 		webDriver.manage().window().maximize();
 		webDriver.manage().deleteAllCookies();
-	}
-
-	@Test
-	public void litsNavigationLessonsTest() throws InterruptedException {
 
 		webDriver.get("https://google.com/");
 
@@ -68,10 +67,44 @@ public class AppTest {
 		Thread.sleep(2000);
 		webDriver.findElement(By.xpath("//*[@id=\"passwordNext\"]/content/span")).click();
 		Thread.sleep(2000);
-		
-		
-		
-		// SPAN[@class='RveJvd snByac']
 
 	}
+
+	@AfterSuite
+	public void quit() {
+		webDriver.quit();
+	}
+
+	@Test
+	public void TestFoundText111() throws InterruptedException {
+		webDriver.findElement(By.xpath("//INPUT[@class='gb_yf']")).sendKeys("Hello User", Keys.ENTER);
+		Thread.sleep(2000);
+		Assert.assertTrue(true);
+		webDriver.findElement(By.xpath("//INPUT[@class='gb_yf']")).clear();
+	}
+
+	@Test
+	public void TestNoFoundText() throws InterruptedException {
+		webDriver.findElement(By.xpath("//INPUT[@class='gb_yf']")).sendKeys("donotfoundme");
+		Assert.assertFalse(false);
+		webDriver.quit();
+
+	}
+
+	/**
+	 * Wrong!!!
+	 * 
+	 * @Test public void TestFoundText() throws InterruptedException {
+	 *       webDriver.findElement(By.xpath("//INPUT[@class='gb_yf']")).sendKeys("Hello
+	 *       User");
+	 *       Assert.assertTrue(webDriver.findElement(By.className("bqe")).getText().contains("Hello
+	 *       User")); }
+	 * 
+	 * @Test public void TestNofoundText() throws InterruptedException {
+	 *       Assert.assertFalse((webDriver.findElement(By.className("bqe")).getText().contains("Hello
+	 *       Userrrrrr")), "sorry guys");
+	 * 
+	 *       }
+	 **/
+
 }
